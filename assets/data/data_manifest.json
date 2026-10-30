@@ -1,0 +1,19 @@
+{
+  "source": "Yahoo Finance via yfinance",
+  "price_field": "Adjusted close",
+  "currency_translation": "USD asset prices multiplied by USD/HKD; unhedged HKD investor view",
+  "start": "2007-01-01",
+  "end": "2026-10-30",
+  "rows": 5171,
+  "tickers": {
+    "SPY": "US large-cap equity",
+    "VEA": "Developed ex-US equity",
+    "EEM": "Emerging-market equity",
+    "IEF": "US 7-10 year Treasury",
+    "LQD": "US investment-grade credit",
+    "GLD": "Gold",
+    "DBC": "Broad commodities",
+    "BIL": "US 1-3 month Treasury bills"
+  },
+  "raw_redistributed": false
+}

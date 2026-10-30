@@ -1,0 +1,37 @@
+{
+  "version": "policy_v1",
+  "frozen_on": "2026-10-30",
+  "base_currency": "HKD",
+  "start_date": "2007-01-01",
+  "evaluation_start": "2008-06-30",
+  "frequency": "monthly",
+  "execution": "month-end close signal, next month's return",
+  "transaction_cost_bps": 10,
+  "trend_lookback_months": 10,
+  "tactical_equity_reduction": 0.5,
+  "tickers": {
+    "SPY": "US large-cap equity",
+    "VEA": "Developed ex-US equity",
+    "EEM": "Emerging-market equity",
+    "IEF": "US 7-10 year Treasury",
+    "LQD": "US investment-grade credit",
+    "GLD": "Gold",
+    "DBC": "Broad commodities",
+    "BIL": "US 1-3 month Treasury bills"
+  },
+  "policy_weights": {
+    "SPY": 0.2,
+    "VEA": 0.1,
+    "EEM": 0.1,
+    "IEF": 0.2,
+    "LQD": 0.15,
+    "GLD": 0.1,
+    "DBC": 0.05,
+    "BIL": 0.1
+  },
+  "equity_sleeves": ["SPY", "VEA", "EEM"],
+  "benchmark_weights": {
+    "SPY": 0.6,
+    "IEF": 0.4
+  }
+}

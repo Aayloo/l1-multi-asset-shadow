@@ -1,0 +1,149 @@
+{
+  "as_of": "2026-10-31",
+  "market_data_through": "2026-10-30",
+  "start": "2008-06-30",
+  "version": "policy_v1",
+  "frozen_on": "2026-10-30",
+  "base_currency": "HKD",
+  "cost_bps": 10.0,
+  "metrics": {
+    "L1 SAA": {
+      "label": "L1 SAA",
+      "start": "2008-06-30",
+      "end": "2026-10-31",
+      "months": 221,
+      "ending_nav": 2.8552,
+      "cagr": 0.0586,
+      "annual_volatility": 0.0868,
+      "sharpe": 0.7019,
+      "sortino": 0.9421,
+      "max_drawdown": -0.2332,
+      "average_turnover": 0.0114,
+      "total_cost": 0.0025
+    },
+    "L1 TAA": {
+      "label": "L1 TAA",
+      "start": "2008-06-30",
+      "end": "2026-10-31",
+      "months": 221,
+      "ending_nav": 2.5445,
+      "cagr": 0.052,
+      "annual_volatility": 0.0764,
+      "sharpe": 0.7034,
+      "sortino": 0.9023,
+      "max_drawdown": -0.2332,
+      "average_turnover": 0.0305,
+      "total_cost": 0.0068
+    },
+    "60/40": {
+      "label": "60/40",
+      "start": "2008-06-30",
+      "end": "2026-10-31",
+      "months": 221,
+      "ending_nav": 4.4364,
+      "cagr": 0.0843,
+      "annual_volatility": 0.096,
+      "sharpe": 0.8936,
+      "sortino": 1.185,
+      "max_drawdown": -0.2556,
+      "average_turnover": 0.009,
+      "total_cost": 0.002
+    },
+    "Equal weight": {
+      "label": "Equal weight",
+      "start": "2008-06-30",
+      "end": "2026-10-31",
+      "months": 221,
+      "ending_nav": 2.5549,
+      "cagr": 0.0523,
+      "annual_volatility": 0.094,
+      "sharpe": 0.5903,
+      "sortino": 0.7819,
+      "max_drawdown": -0.2787,
+      "average_turnover": 0.0124,
+      "total_cost": 0.0027
+    }
+  },
+  "latest_weights": {
+    "SPY": 0.2011,
+    "VEA": 0.0995,
+    "EEM": 0.0936,
+    "IEF": 0.2043,
+    "LQD": 0.1531,
+    "GLD": 0.0964,
+    "DBC": 0.052,
+    "BIL": 0.1
+  },
+  "policy_weights": {
+    "SPY": 0.2,
+    "VEA": 0.1,
+    "EEM": 0.1,
+    "IEF": 0.2,
+    "LQD": 0.15,
+    "GLD": 0.1,
+    "DBC": 0.05,
+    "BIL": 0.1
+  },
+  "risk_contribution": {
+    "SPY": 0.2746,
+    "VEA": 0.167,
+    "EEM": 0.1672,
+    "IEF": 0.1309,
+    "LQD": 0.1302,
+    "GLD": 0.139,
+    "DBC": -0.0107,
+    "BIL": 0.0019
+  },
+  "annual_return_contribution": {
+    "SPY": 0.0211,
+    "VEA": 0.0047,
+    "EEM": 0.004,
+    "IEF": 0.0059,
+    "LQD": 0.0064,
+    "GLD": 0.0094,
+    "DBC": 0.0009,
+    "BIL": 0.0017
+  },
+  "signals": {
+    "SPY": 0.1465,
+    "VEA": 0.1482,
+    "EEM": 0.1619
+  },
+  "yearly_returns": {
+    "2008": -0.179,
+    "2009": 0.1321,
+    "2010": 0.1248,
+    "2011": 0.0248,
+    "2012": 0.0873,
+    "2013": 0.0188,
+    "2014": 0.029,
+    "2015": -0.0446,
+    "2016": 0.0616,
+    "2017": 0.1433,
+    "2018": -0.0314,
+    "2019": 0.1323,
+    "2020": 0.0941,
+    "2021": 0.0745,
+    "2022": -0.097,
+    "2023": 0.1031,
+    "2024": 0.081,
+    "2025": 0.1988,
+    "2026": 0.0798
+  },
+  "ticker_labels": {
+    "SPY": "US large-cap equity",
+    "VEA": "Developed ex-US equity",
+    "EEM": "Emerging-market equity",
+    "IEF": "US 7-10 year Treasury",
+    "LQD": "US investment-grade credit",
+    "GLD": "Gold",
+    "DBC": "Broad commodities",
+    "BIL": "US 1-3 month Treasury bills"
+  },
+  "notes": {
+    "return_basis": "Adjusted-close total return, translated from USD to HKD without hedging.",
+    "rebalance": "Monthly rebalance; signals use information through the prior month-end.",
+    "cost": "10.0 bps per unit of one-way turnover.",
+    "classification": "Paper research portfolio; no real money or PnL."
+  }
+}

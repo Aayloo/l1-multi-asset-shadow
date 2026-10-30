@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A reproducible, public-data multi-asset shadow portfolio showing the path from strategic allocation to tactical weights, costs, risk and attribution.">
+  <meta name="theme-color" content="#13294b">
+  <title>From Views to Weights · L1 Multi-Asset Shadow Portfolio</title>
+  <link rel="canonical" href="https://aayloo.github.io/l1-multi-asset-shadow/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="From Views to Weights · L1 Multi-Asset Shadow Portfolio">
+  <meta property="og:description" content="A reproducible public-data research portfolio connecting allocation, trend, costs, risk and attribution.">
+  <meta property="og:url" content="https://aayloo.github.io/l1-multi-asset-shadow/">
+  <meta property="og:image" content="https://aayloo.github.io/l1-multi-asset-shadow/assets/img/share.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="From Views to Weights · L1 Multi-Asset Shadow Portfolio">
+  <meta name="twitter:description" content="A reproducible public-data research portfolio connecting allocation, trend, costs, risk and attribution.">
+  <meta name="twitter:image" content="https://aayloo.github.io/l1-multi-asset-shadow/assets/img/share.png">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261030-1">
+</head>
+<body>
+  <a class="skip-link" href="#report">Skip to report</a>
+  <div class="reading-progress" aria-hidden="true"><span id="reading-progress-bar"></span></div>
+
+  <header class="topbar">
+    <button class="menu-button" id="menu-button" type="button" aria-controls="case-nav" aria-expanded="false" aria-label="Open case navigation">
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22">
+        <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <a class="topbar-title" href="#overview">L1 Multi-Asset Shadow Portfolio</a>
+    <div class="topbar-meta">
+      <span>Research case · v1</span>
+      <a href="https://aayloo.github.io/">Personal site</a>
+    </div>
+  </header>
+
+  <div class="mobile-scrim" id="mobile-scrim" hidden></div>
+
+  <div class="site-shell">
+    <aside class="sidebar" id="case-nav" aria-label="Case navigation">
+      <div class="brand">
+        <svg aria-hidden="true" viewBox="0 0 48 48" width="38" height="38">
+          <circle cx="24" cy="24" r="20" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M12 29l7-8 6 5 10-13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="35" cy="13" r="3" fill="currentColor"/>
+        </svg>
+        <div>
+          <p class="brand-kicker">PUBLIC SHADOW PORTFOLIO</p>
+          <p class="brand-title">From views to weights</p>
+        </div>
+      </div>
+
+      <nav class="course-links" aria-label="Case sections">
+        <p class="nav-label">Research case</p>
+        <a class="nav-link is-active" href="#overview"><span>00</span> Overview</a>
+        <a class="nav-link" href="#decision"><span>01</span> Decision</a>
+        <a class="nav-link" href="#method"><span>02</span> Method</a>
+        <a class="nav-link" href="#results"><span>03</span> Results</a>
+        <a class="nav-link" href="#allocation"><span>04</span> Allocation</a>
+        <a class="nav-link" href="#risk"><span>05</span> Risk</a>
+        <a class="nav-link" href="#attribution"><span>06</span> Attribution</a>
+        <a class="nav-link" href="#decision-log"><span>07</span> Decision log</a>
+        <a class="nav-link" href="#limits"><span>08</span> Limits</a>
+        <a class="nav-link" href="#reproduce"><span>09</span> Reproduce</a>
+      </nav>
+
+      <div class="sidebar-note">
+        <p class="mini-label">Research only</p>
+        <p>Paper portfolio, public data only. No real orders, personal account or investment advice.</p>
+      </div>
+    </aside>
+
+    <main id="report">
+      <section class="chapter hero" id="overview">
+        <div>
+          <p class="eyebrow"><span>L1 · MULTI-ASSET</span> PUBLIC SHADOW PORTFOLIO</p>
+          <h1>From views<br>to weights.</h1>
+          <p class="hero-lede">
+            A rules-based research portfolio that connects strategic allocation,
+            a transparent tactical overlay, HKD translation, transaction costs,
+            risk concentration and return attribution. The objective is a
+            repeatable decision process, not a claim of market foresight.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#results">Read the evidence</a>
+            <a class="button button-secondary" href="assets/data/latest_weights.csv" download>Download latest weights</a>
+          </div>
+          <div class="callout warning">
+            <strong>This is research, not investment advice</strong>
+            <p>
+              The series is a paper portfolio using public ETFs and foreign-exchange
+              data. It contains no real money, personal account or broker execution.
+            </p>
+          </div>
+        </div>
+
+        <aside class="snapshot-card" aria-label="Latest snapshot">
+          <div class="snapshot-head">
+            <span>L1 TAA snapshot</span>
+            <span data-result="market_data_through" data-format="text">2026-10-29</span>
+          </div>
+          <div class="snapshot-grid">
+            <div><span>Annualised return</span><strong data-result="metrics.L1 TAA.cagr" data-format="percent">—</strong></div>
+            <div><span>Annual volatility</span><strong data-result="metrics.L1 TAA.annual_volatility" data-format="percent">—</strong></div>
+            <div><span>Maximum drawdown</span><strong data-result="metrics.L1 TAA.max_drawdown" data-format="percent">—</strong></div>
+            <div><span>Sharpe</span><strong data-result="metrics.L1 TAA.sharpe" data-format="decimal">—</strong></div>
+          </div>
+          <p class="snapshot-note">
+            Policy <span data-result="version" data-format="text">policy_v1</span>,
+            frozen <span data-result="frozen_on" data-format="text">2026-10-30</span>.
+            HKD, unhedged, after 10 bps cost.
+          </p>
+        </aside>
+      </section>
+
+      <section class="chapter" id="decision">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span>01</span> INVESTMENT QUESTION</p>
+            <h2>Does a simple multi-asset policy plus a trend overlay improve the decision process?</h2>
+          </div>
+          <span class="status-chip">VERSION POLICY_V1</span>
+        </div>
+        <p class="hero-lede">
+          The portfolio is judged against a static policy portfolio, a 60/40 index
+          proxy and an equal-weight multi-asset basket. The question is not whether
+          it earned the highest return in history; it is whether the rules are
+          explicit, repeatable and explainable after costs and currency effects.
+        </p>
+
+        <div class="two-column">
+          <div>
+            <h3>Decision mandate</h3>
+            <ul class="decision-list">
+              <li>Invest across equity, rates, credit, gold, commodities and cash.</li>
+              <li>Hold a fixed strategic allocation as the primary benchmark.</li>
+              <li>Apply one transparent trend rule to equity sleeves only.</li>
+              <li>Rebalance monthly with no leverage and no shorting.</li>
+              <li>Preserve the policy version when evaluating the process.</li>
+            </ul>
+          </div>
+          <div class="callout">
+            <strong>The central conclusion</strong>
+            <p>
+              Over the full sample, the simple 60/40 proxy delivered a higher
+              annualised return and Sharpe ratio than either L1 portfolio. The trend
+              overlay slightly reduced volatility but did not create enough return to
+              justify a claim of superior allocation skill.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="method">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span>02</span> METHOD</p>
+            <h2>Separate the strategic portfolio from the tactical decision.</h2>
+          </div>
+          <span class="status-chip">MONTH-END DECISIONS</span>
+        </div>
+
+        <div class="method-grid">
+          <article class="method-block">
+            <p class="mini-label">L1 SAA</p>
+            <h3>Policy weights</h3>
+            <p>40% equity, 35% duration and credit, 10% gold, 5% commodities and 10% short-term bills.</p>
+          </article>
+          <article class="method-block">
+            <p class="mini-label">L1 TAA</p>
+            <h3>Trend overlay</h3>
+            <p>If a regional equity sleeve has a negative 10-month return, halve that sleeve and hold the proceeds in bills.</p>
+          </article>
+          <article class="method-block">
+            <p class="mini-label">Evaluation</p>
+            <h3>Decision-time discipline</h3>
+            <p>Targets use information through the prior month-end. Returns are in HKD, unhedged, with 10 bps cost per unit of turnover.</p>
+          </article>
+        </div>
+
+        <div class="formula">
+          Monthly return<sub>t</sub> = Σ w<sub>j,t</sub> · r<sub>j,t</sub> − turnover<sub>t</sub> · 10 bps
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Table 1 | Strategic allocation and public proxies</caption>
+            <thead>
+              <tr><th scope="col">Sleeve</th><th scope="col">Ticker</th><th scope="col">Policy weight</th><th scope="col">Role</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>US large-cap equity</td><td>SPY</td><td>20%</td><td>Global growth</td></tr>
+              <tr><td>Developed ex-US equity</td><td>VEA</td><td>10%</td><td>Geographic diversification</td></tr>
+              <tr><td>Emerging-market equity</td><td>EEM</td><td>10%</td><td>Higher-growth and FX exposure</td></tr>
+              <tr><td>US 7–10 year Treasury</td><td>IEF</td><td>20%</td><td>Duration and recession hedge</td></tr>
+              <tr><td>US investment-grade credit</td><td>LQD</td><td>15%</td><td>Carry and credit exposure</td></tr>
+              <tr><td>Gold</td><td>GLD</td><td>10%</td><td>Real-rate and tail hedge</td></tr>
+              <tr><td>Broad commodities</td><td>DBC</td><td>5%</td><td>Inflation sensitivity</td></tr>
+              <tr><td>Short-term Treasury bills</td><td>BIL</td><td>10%</td><td>Liquidity and tactical buffer</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="chapter" id="results">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span>03</span> RESULTS</p>
+            <h2>The benchmark won. The tactical overlay bought a little stability.</h2>
+          </div>
+          <span class="status-chip">FULL SAMPLE · AFTER COST</span>
+        </div>
+
+        <div class="metric-grid">
+          <article><span>L1 TAA CAGR</span><strong data-result="metrics.L1 TAA.cagr" data-format="percent">—</strong></article>
+          <article><span>60/40 CAGR</span><strong data-result="metrics.60/40.cagr" data-format="percent">—</strong></article>
+          <article><span>L1 TAA volatility</span><strong data-result="metrics.L1 TAA.annual_volatility" data-format="percent">—</strong></article>
+          <article><span>60/40 Sharpe</span><strong data-result="metrics.60/40.sharpe" data-format="decimal">—</strong></article>
+        </div>
+
+        <figure class="figure-panel">
+          <img src="assets/img/performance.png" alt="Cumulative growth of HKD one for L1 SAA, L1 TAA, 60/40, and equal weight." width="2747" height="1565">
+          <figcaption>
+            Figure 1 | Cumulative net asset value after transaction costs. Source:
+            public adjusted ETF closes, translated to HKD, monthly rebalancing.
+          </figcaption>
+        </figure>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Table 2 | Full-sample outcome by portfolio</caption>
+            <thead>
+              <tr><th scope="col">Portfolio</th><th scope="col">CAGR</th><th scope="col">Volatility</th><th scope="col">Sharpe</th><th scope="col">Max drawdown</th><th scope="col">Avg. turnover</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>L1 SAA</td><td data-result="metrics.L1 SAA.cagr" data-format="percent">—</td><td data-result="metrics.L1 SAA.annual_volatility" data-format="percent">—</td><td data-result="metrics.L1 SAA.sharpe" data-format="decimal">—</td><td data-result="metrics.L1 SAA.max_drawdown" data-format="percent">—</td><td data-result="metrics.L1 SAA.average_turnover" data-format="percent">—</td></tr>
+              <tr><td>L1 TAA</td><td data-result="metrics.L1 TAA.cagr" data-format="percent">—</td><td data-result="metrics.L1 TAA.annual_volatility" data-format="percent">—</td><td data-result="metrics.L1 TAA.sharpe" data-format="decimal">—</td><td data-result="metrics.L1 TAA.max_drawdown" data-format="percent">—</td><td data-result="metrics.L1 TAA.average_turnover" data-format="percent">—</td></tr>
+              <tr><td>60/40</td><td data-result="metrics.60/40.cagr" data-format="percent">—</td><td data-result="metrics.60/40.annual_volatility" data-format="percent">—</td><td data-result="metrics.60/40.sharpe" data-format="decimal">—</td><td data-result="metrics.60/40.max_drawdown" data-format="percent">—</td><td data-result="metrics.60/40.average_turnover" data-format="percent">—</td></tr>
+              <tr><td>Equal weight</td><td data-result="metrics.Equal weight.cagr" data-format="percent">—</td><td data-result="metrics.Equal weight.annual_volatility" data-format="percent">—</td><td data-result="metrics.Equal weight.sharpe" data-format="decimal">—</td><td data-result="metrics.Equal weight.max_drawdown" data-format="percent">—</td><td data-result="metrics.Equal weight.average_turnover" data-format="percent">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <figure class="figure-panel">
+          <img src="assets/img/drawdown.png" alt="Drawdown paths for L1 SAA, L1 TAA, and the 60/40 benchmark." width="2747" height="1268">
+          <figcaption>
+            Figure 2 | Drawdown path. Source: monthly portfolio returns after
+            transaction costs, HKD translation and monthly rebalancing.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="chapter" id="allocation">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span>04</span> CURRENT SNAPSHOT</p>
+            <h2>Policy and current allocation remain close because every equity trend is positive.</h2>
+          </div>
+          <span class="status-chip">DATA THROUGH 29 OCT 2026</span>
+        </div>
+        <figure class="figure-panel">
+          <img src="assets/img/allocation.png" alt="Policy and current portfolio weights by asset sleeve." width="2548" height="1408">
+          <figcaption>
+            Figure 3 | Strategic policy weights versus the latest tactical allocation.
+            Source: policy v1 and current public-data snapshot.
+          </figcaption>
+        </figure>
+
+        <div class="table-wrap">
+          <table>
+            <caption>Table 3 | Current portfolio weights</caption>
+            <thead>
+              <tr><th scope="col">Sleeve</th><th scope="col">Ticker</th><th scope="col">Current weight</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>US large-cap equity</td><td>SPY</td><td data-weight="SPY">—</td></tr>
+              <tr><td>Developed ex-US equity</td><td>VEA</td><td data-weight="VEA">—</td></tr>
+              <tr><td>Emerging-market equity</td><td>EEM</td><td data-weight="EEM">—</td></tr>
+              <tr><td>US 7–10 year Treasury</td><td>IEF</td><td data-weight="IEF">—</td></tr>
+              <tr><td>US investment-grade credit</td><td>LQD</td><td data-weight="LQD">—</td></tr>
+              <tr><td>Gold</td><td>GLD</td><td data-weight="GLD">—</td></tr>
+              <tr><td>Broad commodities</td><td>DBC</td><td data-weight="DBC">—</td></tr>
+              <tr><td>Short-term Treasury bills</td><td>BIL</td><td data-weight="BIL">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="chapter" id="risk">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span>05</span> RISK</p>
+            <h2>Capital weights understate the equity concentration.</h2>
+          </div>
+          <span class="status-chip">TRAILING 36 MONTHS</span>
+        </div>
+
+        <figure class="figure-panel">
+          <img src="assets/img/risk-contribution.png" alt="Risk contribution by asset for the latest portfolio." width="2428" height="1288">
+          <figcaption>
+            Figure 4 | Contribution to portfolio variance using a trailing 36-month
+            covariance matrix. Source: public data and current portfolio weights.
+          </figcaption>
+        </figure>
+
+        <div class="risk-grid">
+          <article class="risk-block">
+            <h3>Equity is the main risk engine</h3>
+            <p>
+              The three equity sleeves are 40% of policy capital but account for roughly
+              61% of model-based portfolio variance. The conclusion is structural, not
+              a market forecast.
+            </p>
+          </article>
+          <article class="risk-block">
+            <h3>Cash and commodities can hedge</h3>
+            <p>
+              Their risk contributions differ from their capital weights and can be
+              negative when their covariance with the portfolio is favourable. That
+              makes capital allocation and risk allocation separate decisions.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="chapter" id="attribution">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span>06</span> ATTRIBUTION</p>
+            <h2>Where the return came from, before pretending it came from a clever model.</h2>
+          </div>
+          <span class="status-chip">ANNUALISED APPROXIMATION</span>
+        </div>
+
+        <figure class="figure-panel">
+          <img src="assets/img/return-attribution.png" alt="Annualised return contribution by asset sleeve." width="2428" height="1288">
+          <figcaption>
+            Figure 5 | Average monthly contribution multiplied by twelve. Source:
+            target weights and monthly asset returns; this is an additive approximation,
+            not an exact decomposition of compounded wealth.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="chapter" id="decision-log">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span>07</span> DECISION LOG</p>
+            <h2>The current decision can be replayed from the written rule.</h2>
+          </div>
+          <span class="status-chip">OPEN SNAPSHOT</span>
+        </div>
+        <div class="two-column">
+          <div>
+            <h3>October 2026 decision</h3>
+            <ul class="decision-list">
+              <li>US equity trend: <strong data-result="signals.SPY" data-format="percent">—</strong>.</li>
+              <li>Developed ex-US equity trend: <strong data-result="signals.VEA" data-format="percent">—</strong>.</li>
+              <li>Emerging-market equity trend: <strong data-result="signals.EEM" data-format="percent">—</strong>.</li>
+              <li>All signals positive, so no equity sleeve is reduced.</li>
+              <li>Hold the policy allocation until the next month-end review.</li>
+            </ul>
+          </div>
+          <div class="callout">
+            <strong>What would change the decision?</strong>
+            <p>
+              A negative 10-month return in any equity sleeve would halve that sleeve
+              and move the proceeds to short-term bills. A policy change requires a new
+              version number; it cannot be applied retroactively.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="limits">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span>08</span> LIMITS</p>
+            <h2>What this case proves, and what it does not.</h2>
+          </div>
+          <span class="status-chip">PAPER RESEARCH</span>
+        </div>
+        <div class="two-column">
+          <div>
+            <h3>It does show</h3>
+            <ul class="decision-list">
+              <li>A repeatable process from allocation policy to monthly weights.</li>
+              <li>Explicit handling of HKD translation, costs and signal timing.</li>
+              <li>The difference between capital weight and risk contribution.</li>
+              <li>An honest benchmark result, including underperformance.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>It does not establish</h3>
+            <ul class="decision-list">
+              <li>Real-money execution or personal PnL.</li>
+              <li>A statistically significant alpha from the trend rule.</li>
+              <li>Forward-looking market views or an investment recommendation.</li>
+              <li>Production-grade market impact, taxes or closed-market execution.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout warning">
+          <strong>Why a 60/40 is important here</strong>
+          <p>
+            A well-known benchmark outperformed the more diversified allocation over
+            this sample. The correct response is to investigate period dependence,
+            currency exposure and risk objectives, not to rewrite the backtest until
+            the desired winner appears.
+          </p>
+        </div>
+      </section>
+
+      <section class="chapter" id="reproduce">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow"><span>09</span> REPRODUCE</p>
+            <h2>Data, weights and methodology are all inspectable.</h2>
+          </div>
+          <span class="status-chip">PUBLIC DATA</span>
+        </div>
+        <div class="download-strip">
+          <div>
+            <h3>Evidence pack</h3>
+            <p>Download the latest weights, monthly history and investment memo.</p>
+          </div>
+          <div class="download-actions">
+            <a class="button button-secondary" href="assets/data/latest_weights.csv" download>Weights CSV</a>
+            <a class="button button-secondary" href="assets/data/performance_history.csv" download>Monthly history</a>
+            <a class="button button-secondary" href="assets/data/data_manifest.json" download>Data manifest</a>
+            <a class="button button-secondary" href="reports/2026-10.md" download>Investment memo</a>
+          </div>
+        </div>
+        <div class="two-column">
+          <div>
+            <h3>Run locally</h3>
+            <div class="formula">
+              python -m pip install -e ".[dev]"<br>
+              python scripts/build_case.py<br>
+              python -m pytest -q<br>
+              python -m http.server 8000
+            </div>
+          </div>
+          <div>
+            <h3>Data boundary</h3>
+            <p>
+              Adjusted ETF closes and USD/HKD are downloaded from Yahoo Finance via
+              <code>yfinance</code>. Raw vendor data is not redistributed. Returns are
+              unhedged HKD translation of USD-listed proxies.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <strong>L1 Multi-Asset Shadow Portfolio</strong>
+        <p>
+          A public research log, not investment advice. Past simulated results do not
+          guarantee future outcomes.
+        </p>
+        <div class="footer-links">
+          <a href="https://github.com/Aayloo/l1-multi-asset-shadow">GitHub repository</a>
+          <a href="https://aayloo.github.io/notes/l1-shadow-portfolio/">Research note</a>
+          <a href="https://aayloo.github.io/">Personal site</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script src="assets/data/results.js"></script>
+  <script src="assets/js/site.js"></script>
+</body>
+</html>
