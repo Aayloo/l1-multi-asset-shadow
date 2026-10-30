@@ -246,9 +246,28 @@
         </div>
 
         <figure class="figure-panel">
+          <img src="assets/img/risk-return.png" alt="Full-sample annualised return and volatility for L1 SAA, L1 TAA, the 60/40 benchmark and equal weight." width="2509" height="1476">
+          <figcaption>
+            Figure 2 | The 60/40 proxy sits highest on return, while L1 TAA sits
+            furthest left on volatility. Source: public ETF data translated to HKD;
+            monthly net returns after 10 bps transaction costs.
+          </figcaption>
+        </figure>
+
+        <div class="callout">
+          <strong>How to read the risk-return map</strong>
+          <p>
+            The chart makes the trade-off visible without ranking portfolios by a
+            single number. The 60/40 proxy has the highest return in this sample but
+            also higher volatility than L1 TAA. L1 TAA moves left on risk, not up on
+            return: the overlay reduced variance without repairing the performance gap.
+          </p>
+        </div>
+
+        <figure class="figure-panel">
           <img src="assets/img/drawdown.png" alt="Drawdown paths for L1 SAA, L1 TAA, and the 60/40 benchmark." width="2747" height="1268">
           <figcaption>
-            Figure 2 | Drawdown path. Source: monthly portfolio returns after
+            Figure 3 | Drawdown path. Source: monthly portfolio returns after
             transaction costs, HKD translation and monthly rebalancing.
           </figcaption>
         </figure>
@@ -265,10 +284,29 @@
         <figure class="figure-panel">
           <img src="assets/img/allocation.png" alt="Policy and current portfolio weights by asset sleeve." width="2548" height="1408">
           <figcaption>
-            Figure 3 | Strategic policy weights versus the latest tactical allocation.
+            Figure 4 | Strategic policy weights versus the latest tactical allocation.
             Source: policy v1 and current public-data snapshot.
           </figcaption>
         </figure>
+
+        <figure class="figure-panel">
+          <img src="assets/img/allocation-history.png" alt="Stacked area chart showing tactical target weights for equity, fixed income and credit, real assets and cash through the full sample." width="2747" height="1417">
+          <figcaption>
+            Figure 5 | Grouped tactical target weights through time. The dashed white
+            line marks the 40% strategic equity allocation; trend-driven reductions
+            transfer equity to cash. Source: month-end targets from policy v1.
+          </figcaption>
+        </figure>
+
+        <div class="callout">
+          <strong>The tactical overlay is episodic, not a monthly forecast</strong>
+          <p>
+            Most of the time the grouped allocation stays close to policy. When an
+            equity trend turns negative, the visible cash band expands as the affected
+            sleeve is halved. This is a bounded risk-control rule, not a claim that the
+            model can time every turning point.
+          </p>
+        </div>
 
         <div class="table-wrap">
           <table>
@@ -302,7 +340,7 @@
         <figure class="figure-panel">
           <img src="assets/img/risk-contribution.png" alt="Risk contribution by asset for the latest portfolio." width="2428" height="1288">
           <figcaption>
-            Figure 4 | Contribution to portfolio variance using a trailing 36-month
+            Figure 6 | Contribution to portfolio variance using a trailing 36-month
             covariance matrix. Source: public data and current portfolio weights.
           </figcaption>
         </figure>
@@ -339,7 +377,7 @@
         <figure class="figure-panel">
           <img src="assets/img/return-attribution.png" alt="Annualised return contribution by asset sleeve." width="2428" height="1288">
           <figcaption>
-            Figure 5 | Average monthly contribution multiplied by twelve. Source:
+            Figure 7 | Average monthly contribution multiplied by twelve. Source:
             target weights and monthly asset returns; this is an additive approximation,
             not an exact decomposition of compounded wealth.
           </figcaption>

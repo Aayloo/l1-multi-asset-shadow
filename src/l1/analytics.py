@@ -94,6 +94,123 @@ def save_performance(
     return target
 
 
+def save_risk_return_map(
+    metrics: dict[str, dict],
+    output_path: str | Path,
+) -> Path:
+    """Place portfolios on the full-sample risk/return plane."""
+    configure_style()
+    fig, ax = plt.subplots(figsize=(8.4, 4.9), facecolor=PALETTE["paper"])
+    tidy_axis(ax)
+    styles = {
+        "L1 SAA": (PALETTE["ink"], "o", (8, 10), "left"),
+        "L1 TAA": (PALETTE["blue"], "s", (8, -16), "left"),
+        "60/40": (PALETTE["orange"], "^", (8, 8), "left"),
+        "Equal weight": (PALETTE["green"], "D", (8, -17), "left"),
+    }
+    for label, values in metrics.items():
+        color, marker, offset, alignment = styles[label]
+        x = values["annual_volatility"] * 100
+        y = values["cagr"] * 100
+        ax.scatter(
+            x,
+            y,
+            s=62,
+            marker=marker,
+            color=color,
+            edgecolor="white",
+            linewidth=0.8,
+            zorder=3,
+        )
+        ax.annotate(
+            label,
+            (x, y),
+            xytext=offset,
+            textcoords="offset points",
+            ha=alignment,
+            va="center",
+            fontsize=9,
+            color=color,
+            fontweight="bold",
+        )
+
+    ax.set_xlabel("Annualised volatility (%)")
+    ax.set_ylabel("Annualised return (%)")
+    ax.set_xlim(7.0, 10.2)
+    ax.set_ylim(4.8, 9.0)
+    ax.set_title(
+        "Figure 2 | Full-sample risk and return",
+        loc="left",
+        color=PALETTE["ink"],
+        fontsize=12,
+    )
+    fig.text(
+        0.01,
+        0.01,
+        "Source: public ETF data translated to HKD; monthly net returns after 10 bps cost.",
+        fontsize=8,
+        color=PALETTE["muted"],
+    )
+    fig.tight_layout(rect=(0, 0.04, 1, 1))
+    target = Path(output_path)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(target, bbox_inches="tight", facecolor=PALETTE["paper"])
+    plt.close(fig)
+    return target
+
+
+def save_allocation_history(
+    history: pd.DataFrame,
+    output_path: str | Path,
+) -> Path:
+    """Show how grouped tactical target weights changed through the sample."""
+    configure_style()
+    groups = {
+        "Equity": ["target_SPY", "target_VEA", "target_EEM"],
+        "Fixed income & credit": ["target_IEF", "target_LQD"],
+        "Real assets": ["target_GLD", "target_DBC"],
+        "Cash": ["target_BIL"],
+    }
+    weights = pd.DataFrame(
+        {label: history[columns].sum(axis=1) for label, columns in groups.items()},
+        index=history.index,
+    ).mul(100)
+    colors = [PALETTE["ink"], PALETTE["sky"], PALETTE["green"], PALETTE["orange"]]
+
+    fig, ax = plt.subplots(figsize=(9.2, 4.7), facecolor=PALETTE["paper"])
+    tidy_axis(ax)
+    ax.stackplot(
+        weights.index,
+        [weights[column] for column in weights.columns],
+        labels=weights.columns,
+        colors=colors,
+        alpha=0.94,
+    )
+    ax.axhline(40, color="white", linewidth=1.0, linestyle="--", alpha=0.9)
+    ax.set_ylim(0, 100)
+    ax.set_ylabel("Target portfolio weight (%)")
+    ax.set_title(
+        "Figure 5 | Tactical allocation history",
+        loc="left",
+        color=PALETTE["ink"],
+        fontsize=12,
+    )
+    ax.legend(loc="lower center", ncol=4, bbox_to_anchor=(0.5, -0.26))
+    fig.text(
+        0.01,
+        0.01,
+        "Source: L1 TAA month-end target weights; dashed line marks the 40% strategic equity allocation.",
+        fontsize=8,
+        color=PALETTE["muted"],
+    )
+    fig.tight_layout(rect=(0, 0.06, 1, 1))
+    target = Path(output_path)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(target, bbox_inches="tight", facecolor=PALETTE["paper"])
+    plt.close(fig)
+    return target
+
+
 def save_drawdown(drawdowns: dict[str, pd.Series], output_path: str | Path) -> Path:
     configure_style()
     fig, ax = plt.subplots(figsize=(9.2, 4.2), facecolor=PALETTE["paper"])
@@ -102,7 +219,7 @@ def save_drawdown(drawdowns: dict[str, pd.Series], output_path: str | Path) -> P
     for (label, series), color in zip(drawdowns.items(), colors):
         ax.plot(series.index, series * 100, label=label, color=color, linewidth=1.6)
     ax.set_ylabel("Drawdown (%)")
-    ax.set_title("Figure 2 | Drawdown path", loc="left", color=PALETTE["ink"], fontsize=12)
+    ax.set_title("Figure 3 | Drawdown path", loc="left", color=PALETTE["ink"], fontsize=12)
     ax.legend(loc="lower left", ncol=3)
     fig.text(0.01, 0.01, "Source: tutorial calculations from public market data.", fontsize=8, color=PALETTE["muted"])
     fig.tight_layout(rect=(0, 0.04, 1, 1))
@@ -128,7 +245,7 @@ def save_allocation(
     ax.set_yticks(y, labels)
     ax.invert_yaxis()
     ax.set_xlabel("Weight (%)")
-    ax.set_title("Figure 3 | Policy versus current allocation", loc="left", color=PALETTE["ink"], fontsize=12)
+    ax.set_title("Figure 4 | Policy versus current allocation", loc="left", color=PALETTE["ink"], fontsize=12)
     ax.legend(loc="lower right")
     fig.tight_layout()
     target = Path(output_path)
@@ -147,7 +264,7 @@ def save_risk_contribution(contribution: pd.Series, output_path: str | Path) -> 
     ax.barh(ordered.index, ordered * 100, color=colors)
     ax.axvline(0, color=PALETTE["muted"], linewidth=0.8)
     ax.set_xlabel("Share of portfolio variance (%)")
-    ax.set_title("Figure 4 | Risk contribution by asset", loc="left", color=PALETTE["ink"], fontsize=12)
+    ax.set_title("Figure 6 | Risk contribution by asset", loc="left", color=PALETTE["ink"], fontsize=12)
     fig.tight_layout()
     target = Path(output_path)
     target.parent.mkdir(parents=True, exist_ok=True)
@@ -165,7 +282,7 @@ def save_attribution(contribution: pd.Series, output_path: str | Path) -> Path:
     ax.barh(ordered.index, ordered * 100, color=colors)
     ax.axvline(0, color=PALETTE["muted"], linewidth=0.8)
     ax.set_xlabel("Annualised return contribution (%)")
-    ax.set_title("Figure 5 | Return attribution by asset sleeve", loc="left", color=PALETTE["ink"], fontsize=12)
+    ax.set_title("Figure 7 | Return attribution by asset sleeve", loc="left", color=PALETTE["ink"], fontsize=12)
     fig.tight_layout()
     target = Path(output_path)
     target.parent.mkdir(parents=True, exist_ok=True)

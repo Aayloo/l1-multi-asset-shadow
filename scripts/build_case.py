@@ -15,9 +15,11 @@ sys.path.insert(0, str(ROOT / "src"))
 from l1.analytics import (
     PALETTE,
     save_allocation,
+    save_allocation_history,
     save_attribution,
     save_drawdown,
     save_performance,
+    save_risk_return_map,
     save_risk_contribution,
 )
 from l1.backtest import build_targets, make_research_frame, simulate, summarize
@@ -103,6 +105,7 @@ def main() -> None:
         {name: history["nav"] for name, history in histories.items()},
         image_dir / "performance.png",
     )
+    save_risk_return_map(metrics, image_dir / "risk-return.png")
     save_drawdown(
         {
             name: histories[name]["nav"] / histories[name]["nav"].cummax() - 1
@@ -115,6 +118,7 @@ def main() -> None:
         latest_weights,
         image_dir / "allocation.png",
     )
+    save_allocation_history(taa_history, image_dir / "allocation-history.png")
     save_risk_contribution(risk_contribution, image_dir / "risk-contribution.png")
     save_attribution(annual_contribution, image_dir / "return-attribution.png")
 

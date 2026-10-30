@@ -43,7 +43,7 @@ def test_static_site_assets_and_anchors():
         assert fragment in parser.ids
     for resource in parser.local_paths:
         assert (ROOT / resource).resolve().exists(), resource
-    assert len(parser.images) == 5
+    assert len(parser.images) == 7
 
 
 def test_latest_weights_are_long_only_and_fully_invested():
